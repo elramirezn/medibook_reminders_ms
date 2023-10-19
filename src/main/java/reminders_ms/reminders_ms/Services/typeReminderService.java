@@ -23,4 +23,8 @@ public class typeReminderService {
     public List<typeReminder> getAllTypeReminders(){
         return typeReminderRepository.findAll();
     }
+    public typeReminder getTypeReminderById(String id) {
+        return typeReminderRepository.findById(id).orElse(null);
+    }
+
 }

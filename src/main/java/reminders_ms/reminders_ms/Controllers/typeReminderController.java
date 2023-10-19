@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import reminders_ms.reminders_ms.Models.reminderFrequency;
 import reminders_ms.reminders_ms.Models.typeReminder;
 import reminders_ms.reminders_ms.Services.typeReminderService;
 
@@ -34,5 +36,16 @@ public class typeReminderController {
     public ResponseEntity<List <typeReminder>> getAllTypeReminders(){
         List<typeReminder> typerReminder = typeReminderService.getAllTypeReminders();
         return new ResponseEntity<>(typerReminder, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<typeReminder> getTypeReminderById(@PathVariable String id){
+        typeReminder retrievedReminder = typeReminderService.getTypeReminderById(id);
+        if(retrievedReminder != null){
+            return new ResponseEntity<>(retrievedReminder, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        
     }
 }

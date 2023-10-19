@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,5 +37,17 @@ public class reminderFrequencyController{
         List<reminderFrequency> remindersFrequencies = reminderFrequencyService.getAllFrequencies();
         return new ResponseEntity<>(remindersFrequencies, HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<reminderFrequency> getReminderFrequencyById(@PathVariable String id){
+        reminderFrequency retrievedReminder = reminderFrequencyService.getReminderFrequencyById(id);
+        if(retrievedReminder != null){
+            return new ResponseEntity<>(retrievedReminder, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        
+    }
+
 
 }

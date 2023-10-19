@@ -24,4 +24,9 @@ public class reminderFrequencyService {
     public List<reminderFrequency> getAllFrequencies(){
         return reminderFrequencyRepository.findAll();
     }
+
+    public reminderFrequency getReminderFrequencyById(String id) {
+        return reminderFrequencyRepository.findById(id).orElse(null);
+    }
+    
 }

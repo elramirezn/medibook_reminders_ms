@@ -22,4 +22,8 @@ public class reminderService{
     public List<reminder> getAllReminders(){
         return reminderRepository.findAll();
     }
+
+    public reminder getReminderById(String id){
+        return reminderRepository.findById(id).orElse(null);
+    }
 }
